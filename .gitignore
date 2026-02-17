@@ -3,10 +3,10 @@ dist/
 build/
 *.spec.bak
 
-# Generated icons (from logo.png via build_icons.py)
-logo.ico
-logo.icns
-*.iconset/
+# Generated icons (from assets/logo.png via scripts/build_icons.py)
+assets/logo.ico
+assets/logo.icns
+assets/*.iconset/
 # Old logo (replaced by logo.png)
 calculator-logo.png
 

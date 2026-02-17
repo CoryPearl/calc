@@ -7,10 +7,10 @@ echo "Installing build deps (if needed)..."
 pip install -q -r requirements-build.txt -r requirements.txt
 
 echo "Generating icons (ICO + ICNS)..."
-python3 build_icons.py
+python3 scripts/build_icons.py
 
-if [[ ! -f logo.icns ]]; then
-  echo "Error: logo.icns not found. Run build_icons.py on macOS." 1>&2
+if [[ ! -f assets/logo.icns ]]; then
+  echo "Error: assets/logo.icns not found. Run scripts/build_icons.py on macOS." 1>&2
   exit 1
 fi
 

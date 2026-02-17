@@ -14,9 +14,10 @@ except ImportError:
     print("Install Pillow: pip install pillow", file=sys.stderr)
     sys.exit(1)
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-PNG_PATH = os.path.join(PROJECT_DIR, "logo.png")
-ICO_PATH = os.path.join(PROJECT_DIR, "logo.ico")
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ASSETS_DIR = os.path.join(PROJECT_DIR, "assets")
+PNG_PATH = os.path.join(ASSETS_DIR, "logo.png")
+ICO_PATH = os.path.join(ASSETS_DIR, "logo.ico")
 
 # ICO sizes (Windows)
 ICO_SIZES = [(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)]
@@ -55,7 +56,7 @@ def main():
         print("Skipping .icns (run on macOS to generate logo.icns)")
         return
 
-    iconset_dir = os.path.join(PROJECT_DIR, "logo.iconset")
+    iconset_dir = os.path.join(ASSETS_DIR, "logo.iconset")
     if os.path.isdir(iconset_dir):
         import shutil
         shutil.rmtree(iconset_dir)
@@ -65,7 +66,7 @@ def main():
             out_path = os.path.join(iconset_dir, name)
             resized = img.resize((size, size), Image.Resampling.LANCZOS)
             resized.save(out_path, "PNG")
-        icns_path = os.path.join(PROJECT_DIR, "logo.icns")
+        icns_path = os.path.join(ASSETS_DIR, "logo.icns")
         r = subprocess.run(
             ["iconutil", "-c", "icns", "-o", icns_path, iconset_dir],
             capture_output=True,

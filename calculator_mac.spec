@@ -39,7 +39,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='logo.icns',
+    icon='assets/logo.icns',
 )
 
 coll = COLLECT(
@@ -56,7 +56,7 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='Calculator.app',
-    icon='logo.icns',
+    icon='assets/logo.icns',
     bundle_identifier='com.calculator.sci',
     info_plist={
         'NSPrincipalClass': 'NSApplication',

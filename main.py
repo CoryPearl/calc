@@ -36,7 +36,7 @@ class SciCalculatorApp(tk.Tk):
         try:
             import os
             _dir = os.path.dirname(os.path.abspath(__file__))
-            _icon_path = os.path.join(_dir, "logo.png")
+            _icon_path = os.path.join(_dir, "assets", "logo.png")
             if os.path.exists(_icon_path):
                 self._icon_image = tk.PhotoImage(file=_icon_path)
                 self.iconphoto(True, self._icon_image)

@@ -6,10 +6,10 @@ echo Installing build deps (if needed)...
 pip install -q -r requirements-build.txt -r requirements.txt
 
 echo Generating icons (ICO)...
-python build_icons.py
+python scripts\build_icons.py
 
-if not exist logo.ico (
-  echo Error: logo.ico not found.
+if not exist assets\logo.ico (
+  echo Error: assets\logo.ico not found.
   exit /b 1
 )
 
