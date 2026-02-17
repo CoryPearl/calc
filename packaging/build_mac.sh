@@ -1,7 +1,7 @@
 #!/bin/bash
-# Build Calculator.app for macOS. Run from project root on a Mac.
+# Build Calculator.app for macOS. Run from project root: ./packaging/build_mac.sh
 set -e
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 echo "Installing build deps (if needed)..."
 pip install -q -r requirements-build.txt -r requirements.txt
@@ -15,6 +15,6 @@ if [[ ! -f assets/logo.icns ]]; then
 fi
 
 echo "Building with PyInstaller..."
-pyinstaller --noconfirm calculator_mac.spec
+pyinstaller --noconfirm packaging/calculator_mac.spec
 
 echo "Done. App: dist/Calculator.app"

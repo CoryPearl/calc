@@ -21,6 +21,8 @@ The app opens a compact dark window:
 - Top: history of past calculations (auto-scrolls as you compute).
 - Bottom: single-line text input (auto-focused; press Enter to evaluate).
 
+**Project layout:** `main.py` (entry), `src/` (app code), `assets/` (logo), `scripts/` (icon build), `packaging/` (PyInstaller), `docs/` (e.g. [docs/BUILD.md](docs/BUILD.md) for packaging).
+
 ## Input syntax
 
 You can type expressions using a Python-like syntax:

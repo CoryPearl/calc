@@ -4,10 +4,12 @@ Packages the calculator into a standalone executable with the app logo as the ic
 
 ## Project layout
 
-- **`main.py`** – App entry point
+- **`main.py`** – Entry point (launches app from `src/`)
+- **`src/`** – App code (`src/app.py`)
 - **`assets/`** – Logo and generated icons (`logo.png`, `logo.ico`, `logo.icns`)
 - **`scripts/`** – Build helpers (`build_icons.py`)
-- **Root** – Requirements, specs, and build entry scripts (`build_mac.sh`, `build_windows.bat`)
+- **`packaging/`** – Build scripts and PyInstaller specs
+- **`docs/`** – Documentation (this file)
 
 ## Prerequisites
 
@@ -38,33 +40,33 @@ On non‑Mac machines this only creates `.ico`; run on a Mac to get `.icns`.
 
 ## Build for macOS
 
-On a Mac:
+From project root, on a Mac:
 
 ```bash
-./build_mac.sh
+./packaging/build_mac.sh
 ```
 
 Output: **`dist/Calculator.app`** (double‑click to run). Uses `assets/logo.icns` as the app icon.
 
 ## Build for Windows
 
-On Windows (Command Prompt or PowerShell):
+From project root, on Windows (Command Prompt or PowerShell):
 
 ```cmd
-build_windows.bat
+packaging\build_windows.bat
 ```
 
 Output: **`dist\Calculator.exe`** (single file). Uses `assets/logo.ico` as the icon.
 
 ## Manual build (optional)
 
+From project root, after generating icons:
+
 - **Mac:**  
-  `pyinstaller --noconfirm calculator_mac.spec`  
-  (after running `scripts/build_icons.py` on Mac so `assets/logo.icns` exists)
+  `pyinstaller --noconfirm packaging/calculator_mac.spec`
 
 - **Windows:**  
-  `pyinstaller --noconfirm calculator_win.spec`  
-  (after `scripts/build_icons.py` so `assets/logo.ico` exists)
+  `pyinstaller --noconfirm packaging/calculator_win.spec`
 
 ## Cross‑platform note
 
