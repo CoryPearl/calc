@@ -8,7 +8,10 @@ a = Analysis(
     pathex=['..'],
     binaries=[],
     datas=[],
-    hiddenimports=['sympy', 'matplotlib', 'numpy', 'PIL'],
+    hiddenimports=[
+        'sympy', 'matplotlib', 'numpy', 'PIL',
+        'matplotlib.backends.backend_tkagg',
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

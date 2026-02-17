@@ -1654,19 +1654,20 @@ class SciCalculatorApp(tk.Tk):
         if body.startswith("int "):
             # Indefinite integral
             func_part = body[3:].strip()
-            local_dict = self._sympy_local_dict()
-            func_part = body[3:].strip()
+            if not func_part:
+                raise ValueError("Steps syntax: steps int <expression> e.g. steps int x^2")
             local_dict = self._sympy_local_dict()
             f = sp.sympify(self._normalize_basic(func_part), locals=local_dict)
-            free = list(f.free_symbols)
+            free = sorted(f.free_symbols, key=str)
             var = free[0] if free else self.sym_x
             result = sp.integrate(f, var)
             return f"∫ {f} d{var} = {result} + C"
-        elif body.startswith("solve"):
+        elif body.startswith("solve "):
             # Equation solving
-            solve_part = body[5:].strip()
+            solve_part = body[6:].strip()
+            if not solve_part:
+                raise ValueError("Steps syntax: steps solve <equation> e.g. steps solve x^2=4")
             local_dict = self._sympy_local_dict()
-            # Parse solve expression
             if "=" in solve_part:
                 lhs_str, rhs_str = solve_part.split("=", 1)
                 lhs = sp.sympify(self._normalize_basic(lhs_str), locals=local_dict)
@@ -1675,10 +1676,16 @@ class SciCalculatorApp(tk.Tk):
             else:
                 f = sp.sympify(self._normalize_basic(solve_part), locals=local_dict)
                 eq = sp.Eq(f, 0)
-            free = list(eq.free_symbols)
+            free = sorted(eq.free_symbols, key=str)
             var = free[0] if free else self.sym_x
             sol = sp.solve(eq, var)
-            return f"Solving {eq}:\n{var} = {sol}"
+            if sol is None or (isinstance(sol, list) and len(sol) == 0):
+                sol_str = "No solution"
+            elif isinstance(sol, list):
+                sol_str = ", ".join(str(s) for s in sol)
+            else:
+                sol_str = str(sol)
+            return f"Solving {eq}\n{var} = {sol_str}"
         else:
             # Generic: just evaluate and show
             local_dict = self._sympy_local_dict()
@@ -1692,6 +1699,10 @@ class SciCalculatorApp(tk.Tk):
         plot sin(x), cos(x)
         """
         try:
+            import matplotlib
+            # Use TkAgg explicitly so plotting works when packaged (PyInstaller)
+            matplotlib.use("TkAgg")
+            import matplotlib.backends.backend_tkagg  # noqa: F401 - for PyInstaller
             import matplotlib.pyplot as plt
             import numpy as np
         except ImportError:

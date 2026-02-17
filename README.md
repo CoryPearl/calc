@@ -1,4 +1,4 @@
-# SciCalc – Dark Scientific Calculator
+# Calc – Short for Calculator
 
 A small, dark-themed scientific calculator written in Python with a history pane and an input bar at the bottom. It supports scientific functions, brackets, integrals (definite and indefinite), derivatives, limits, equation solving, user variables, and compact math-like syntax that is rendered as pretty symbols in the history.
 
