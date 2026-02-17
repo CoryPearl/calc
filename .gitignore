@@ -1,0 +1,35 @@
+# Build outputs
+dist/
+build/
+*.spec.bak
+
+# Generated icons (from logo.png via build_icons.py)
+logo.ico
+logo.icns
+*.iconset/
+# Old logo (replaced by logo.png)
+calculator-logo.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+venv/
+.venv/
+env/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (optional)
+.idea/
+.vscode/
+*.swp
+*.swo
