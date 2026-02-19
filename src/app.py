@@ -2283,6 +2283,35 @@ class SciCalculatorApp(tk.Tk):
         def mod(a, b):
             return a % b
 
+        # Trigonometric functions using degrees (convert to radians internally)
+        def sin_deg(arg):
+            """sin with degrees input"""
+            return sp.sin(arg * sp.pi / 180)
+
+        def cos_deg(arg):
+            """cos with degrees input"""
+            return sp.cos(arg * sp.pi / 180)
+
+        def tan_deg(arg):
+            """tan with degrees input"""
+            return sp.tan(arg * sp.pi / 180)
+
+        # Inverse trigonometric functions returning degrees (convert from radians)
+        def asin_deg(arg):
+            """asin returning degrees"""
+            result = sp.asin(arg)
+            return result * 180 / sp.pi
+
+        def acos_deg(arg):
+            """acos returning degrees"""
+            result = sp.acos(arg)
+            return result * 180 / sp.pi
+
+        def atan_deg(arg):
+            """atan returning degrees"""
+            result = sp.atan(arg)
+            return result * 180 / sp.pi
+
         return {
             "x": x,
             "pi": sp.pi,
@@ -2298,12 +2327,12 @@ class SciCalculatorApp(tk.Tk):
             "to_deg": to_deg,
             "to_rad": to_rad,
             "mod": mod,
-            "sin": sp.sin,
-            "cos": sp.cos,
-            "tan": sp.tan,
-            "asin": sp.asin,
-            "acos": sp.acos,
-            "atan": sp.atan,
+            "sin": sin_deg,
+            "cos": cos_deg,
+            "tan": tan_deg,
+            "asin": asin_deg,
+            "acos": acos_deg,
+            "atan": atan_deg,
             "sinh": sp.sinh,
             "cosh": sp.cosh,
             "tanh": sp.tanh,
@@ -2314,9 +2343,9 @@ class SciCalculatorApp(tk.Tk):
             "Matrix": sp.Matrix,
             "IntDef": IntDef,
             # Common aliases
-            "arcsin": sp.asin,
-            "arccos": sp.acos,
-            "arctan": sp.atan,
+            "arcsin": asin_deg,
+            "arccos": acos_deg,
+            "arctan": atan_deg,
         }
 
     def _format_result(self, result):
