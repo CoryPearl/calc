@@ -16,4 +16,12 @@ if not exist assets\logo.ico (
 echo Building with PyInstaller...
 pyinstaller --noconfirm packaging\calculator_win.spec
 
-echo Done. Executable: dist\Calculator.exe
+echo Moving executable to project root...
+if exist Calculator.exe del /q Calculator.exe
+move dist\Calculator.exe .
+
+echo Removing dist and build...
+if exist dist rmdir /s /q dist
+if exist build rmdir /s /q build
+
+echo Done. Executable: Calculator.exe

@@ -17,4 +17,11 @@ fi
 echo "Building with PyInstaller..."
 pyinstaller --noconfirm packaging/calculator_mac.spec
 
-echo "Done. App: dist/Calculator.app"
+echo "Moving app to project root..."
+rm -rf Calculator.app
+mv dist/Calculator.app .
+
+echo "Removing dist and build..."
+rm -rf dist build
+
+echo "Done. App: Calculator.app"
